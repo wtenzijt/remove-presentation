@@ -2,7 +2,7 @@
 
 A 6-minute walkthrough of work I'm proud of: Climate Cooperative, My Climate Cooperative, Sproutly and Jarvis.
 
-Open `index.html` in a browser, or the GitHub Pages link once published.
+**Open the deck:** https://wtenzijt.github.io/remove-presentation/
 
 ## Controls
 - `→` / `Space` / click right half: next slide · `←` / click left half: back
