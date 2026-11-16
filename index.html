@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Making Trust Visible</title>
-<meta name="description" content="William ten Zijthoff: a short walkthrough of Climate Cooperative, My Climate Cooperative, Sproutly and Jarvis.">
+<meta name="description" content="William ten Zijthoff: a short walkthrough of the strategy and operations behind Climate Cooperative.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -81,8 +81,6 @@ p.lead{font-size:26px;line-height:1.5;color:var(--muted);max-width:820px;margin-
 @keyframes drop{from{top:-16px}to{top:62px}}
 .forest{border-radius:22px;padding:26px 34px;background:linear-gradient(90deg,rgba(128,199,70,.22),rgba(128,199,70,.08));border:1px solid rgba(128,199,70,.4);display:flex;justify-content:space-between;align-items:center;font-size:22px}
 .forest b{font-family:Poppins;font-size:28px}
-.engine{margin-top:18px;border-radius:18px;padding:18px 34px;border:1px dashed rgba(233,180,76,.5);color:var(--gold);font-size:19px;display:flex;justify-content:space-between}
-
 /* jarvis */
 .arch{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:22px;align-items:center;margin-top:44px}
 .col{display:grid;gap:14px}
@@ -106,18 +104,40 @@ p.lead{font-size:26px;line-height:1.5;color:var(--muted);max-width:820px;margin-
 .lesson p{font-size:18px;color:var(--muted);line-height:1.5}
 .bridge{margin-top:34px;font-size:24px;line-height:1.5;max-width:1250px}
 
+
+/* strategy / ops call-outs */
+.calls{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.call{border-radius:16px;padding:18px 20px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.call .t{font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;color:var(--gold)}
+.call.ops .t{color:var(--lime)}
+.call p{font-size:17px;line-height:1.45}
+.sub{font-size:21px;line-height:1.5;color:var(--muted);margin-top:18px;max-width:640px}
+.role{margin-top:22px;font-size:20px;color:var(--muted)}
+.role b{color:var(--cream)}
+.start{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.start div{font-size:18px;line-height:1.45;padding:16px 20px;border-left:3px solid var(--gold);background:rgba(233,180,76,.07);border-radius:0 12px 12px 0}
+
 /* chrome */
 #progress{position:fixed;left:0;top:0;height:4px;background:var(--lime);transition:width .5s ease;z-index:10}
 #count{position:fixed;right:24px;bottom:18px;font:500 14px Inter;color:var(--muted);z-index:10}
-#hint{position:fixed;left:24px;bottom:18px;font:500 13px Inter;color:rgba(246,243,234,.4);z-index:10}
-#notes{position:fixed;left:0;right:0;bottom:0;max-height:42vh;overflow:auto;background:rgba(1,20,13,.96);border-top:2px solid var(--lime);
-  padding:22px 34px 46px;font-size:20px;line-height:1.6;transform:translateY(100%);transition:transform .35s ease;z-index:20}
-#notes.open{transform:none}
-#notes h4{font:600 13px Inter;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:8px}
 .note{display:none}
 nav.dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);display:grid;gap:10px;z-index:10}
 nav.dots button{width:9px;height:9px;border-radius:50%;border:0;background:rgba(246,243,234,.25);cursor:pointer}
 nav.dots button.on{background:var(--lime);height:24px;border-radius:5px}
+
+/* presenter window (opened with P, never on the shared screen) */
+#presenter{display:none}
+body.pv{overflow:auto}
+body.pv #stage,body.pv #progress,body.pv #count,body.pv nav.dots{display:none}
+body.pv #presenter{display:grid;grid-template-rows:auto 1fr auto;gap:18px;min-height:100vh;padding:24px 30px}
+.pv-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px}
+.pv-top h1{font-size:28px;line-height:1.2}
+#pvClock{font:600 34px Poppins;color:var(--lime)}
+#pvTime{color:var(--gold);font-size:16px;margin-top:4px}
+#pvNote{font-size:24px;line-height:1.6;max-width:1000px}
+.pv-bot{display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted)}
+.pv-bot button{font:600 16px Inter;padding:12px 22px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--cream);cursor:pointer}
+.pv-bot button:hover{border-color:var(--lime)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -126,155 +146,158 @@ nav.dots button.on{background:var(--lime);height:24px;border-radius:5px}
 <div id="stage">
 
 <!-- 1 TITLE -->
-<section class="slide" data-time="0:30">
+<section class="slide" data-time="0:30" data-title="Making trust visible">
   <div class="photo" style="background-image:url(img/hero-cc.jpg)"></div>
   <div class="shade"></div>
   <div>
     <div class="kicker r">Work I'm proud of · William ten Zijthoff</div>
     <h1 class="r">Making trust<br><span class="hl">visible.</span></h1>
-    <p class="lead r">How I built the digital side of a tree-planting cooperative: three products, one forest, and an AI assistant that keeps a small team running.</p>
+    <p class="lead r">The strategy and operations behind Climate Cooperative: one mission, three audiences, and the operating rules that hold it together.</p>
   </div>
-  <div class="note">Thank you for having me. I want to show you something I'm genuinely proud of: the digital ecosystem I built for Climate Cooperative. It's three products for three different audiences, all connected to one real forest in Brazil, plus a personal AI assistant I built to keep a small team moving. I'll take about six minutes, and the thread running through all of it is one word: trust.</div>
+  <div class="note">Thank you for having me. I'd like to walk you through something I'm genuinely proud of: how we took Climate Cooperative, a tree-planting cooperative, and turned it into a clear strategy with three products for three audiences, all running on one operation. I'll keep it to about six minutes. I'll focus less on what the websites look like and more on the strategic choices and the operating systems behind them, because that's the part that's relevant for this role. The thread through all of it is one word: trust.</div>
 </section>
 
 <!-- 2 PROBLEM -->
-<section class="slide" data-time="0:45">
+<section class="slide" data-time="0:45" data-title="The trust problem">
   <div class="bg"></div>
   <div>
-    <div class="kicker r">The problem</div>
+    <div class="kicker r">The strategic question</div>
     <h2 class="r">Climate projects don't have a funding problem first.<br>They have a <span class="gold">trust problem.</span></h2>
     <ul class="bul r">
       <li>Companies now face <b>CSRD and audit pressure</b>: estimates are no longer enough.</li>
       <li>Individuals have seen the headlines about offsets that never existed.</li>
-      <li>So my question was: <b>what if every euro could be followed to a GPS coordinate?</b></li>
+      <li>So the question I set for the strategy: <b>what if every euro could be followed to a GPS coordinate?</b></li>
     </ul>
   </div>
-  <div class="note">Here's the problem I started from. Climate projects, and carbon removal is no exception, don't fail first on money. They fail on trust. Companies are under real regulatory pressure now, CSRD and audits, so estimates aren't good enough. Consumers have read the stories about offsets that didn't exist. So the design question I gave myself was simple: what if every euro could be followed all the way down to a GPS coordinate in the forest? Everything you'll see is built around that question.</div>
+  <div class="note">Here's where I started. Climate projects, and carbon removal is no exception, don't fail first on money. They fail on trust. Companies are under real regulatory pressure now, CSRD and audits, so estimates aren't good enough. Consumers have read the stories about offsets that didn't exist. So the strategic question I put at the centre was: what if every euro could be followed all the way to a GPS coordinate in the forest? That question drove every decision after it: what we built, who for, and how we run it.</div>
 </section>
 
-<!-- 3 ECOSYSTEM -->
-<section class="slide" data-time="0:45">
+<!-- 3 STRATEGY -->
+<section class="slide" data-time="0:45" data-title="One mission, three front doors">
   <div class="bg"></div>
   <div>
     <div class="kicker r">The strategy</div>
     <h2 class="r">One mission. <span class="hl">Three front doors.</span></h2>
     <div class="r">
       <div class="eco">
-        <div class="door"><div class="tag">Companies</div><h3>Climate Cooperative</h3><div class="url">climate-cooperative.com</div><p>Audit-ready, verified reforestation for ESG reporting.</p></div>
-        <div class="door"><div class="tag">Individuals</div><h3>My Climate Cooperative</h3><div class="url">my.climate-cooperative.com</div><p>A membership: follow your own trees on the map.</p></div>
-        <div class="door"><div class="tag">Players</div><h3>Sproutly</h3><div class="url">games.sproutlyrwa.com</div><p>A mobile game where daily play funds real planting.</p></div>
+        <div class="door"><div class="tag">Companies</div><h3>Climate Cooperative</h3><div class="url">climate-cooperative.com</div><p>Compliance and audit-ready impact. Higher value, longer sales cycle.</p></div>
+        <div class="door"><div class="tag">Individuals</div><h3>My Climate Cooperative</h3><div class="url">my.climate-cooperative.com</div><p>A monthly membership. Predictable, recurring funding.</p></div>
+        <div class="door"><div class="tag">Players</div><h3>Sproutly</h3><div class="url">games.sproutlyrwa.com</div><p>A mobile game. Reach at scale, new audience.</p></div>
       </div>
       <div class="flow"><span></span><span></span><span></span></div>
-      <div class="forest"><b>🌳 One real forest · Pará, Brazil</b><span class="small">agroforestry systems · GPS-tagged plots · local planting partners</span></div>
-      <div class="engine"><span>⚙️ Behind the scenes: <b>Jarvis</b>, my AI operations assistant</span><span>email · briefings · research · voice</span></div>
+      <div class="forest"><b>🌳 One operation · Pará, Brazil</b><span class="small">same forest · same planting partners · same impact numbers</span></div>
     </div>
+    <p class="role r">My role: <b>choose the segments, set the business model per door, and design the shared operation underneath.</b></p>
   </div>
-  <div class="note">The strategic choice was this: instead of one website that tries to talk to everyone, I built three front doors, each designed for one audience. Companies get a B2B platform built around compliance. Individuals get a membership where they follow their own trees. And a younger, mobile audience gets a game. All three flow into the same forest in Pará, Brazil. And underneath, there's Jarvis, which I'll come back to at the end. Different audiences, one backbone: that's the part I'm proudest of from a strategy point of view.</div>
+  <div class="note">The core strategic choice was segmentation. Instead of one website trying to talk to everyone, we built three front doors, each with its own audience and its own business model. Companies: high value, long sales cycle, driven by compliance. Individuals: a monthly membership, which gives predictable recurring funding. Players: a game, which gives reach at scale. But underneath there is one operation: the same forest, the same planting partners and the same impact numbers. Different front doors, one backbone. That's what lets a small team run three products without fragmenting.</div>
 </section>
 
 <!-- 4 CLIMATE COOPERATIVE -->
-<section class="slide" data-time="1:00">
+<section class="slide" data-time="1:00" data-title="Climate Cooperative · companies">
   <div class="bg"></div>
   <div class="split">
     <div>
-      <div class="kicker r">01 · For companies</div>
-      <h2 class="r" style="font-size:56px">Carbon is the next <span class="hl">financial metric.</span></h2>
-      <ul class="bul r">
-        <li>Positioned for <b>CFOs and sustainability leads</b>, not for tree lovers.</li>
-        <li>GPS-tagged, third-party verified, with a <b>public registry</b> and serial numbers.</li>
-        <li>Investor dataroom and pitch: I ran a <b>full consistency audit</b> so every number matches across site, PDFs and deck.</li>
-      </ul>
+      <div class="kicker r">01 · Companies</div>
+      <h2 class="r" style="font-size:54px">Carbon is the next <span class="hl">financial metric.</span></h2>
+      <p class="sub r">GPS-tagged, third-party verified reforestation with a public registry, built for CFOs and sustainability leads.</p>
+      <div class="calls r">
+        <div class="call"><div class="t">Strategy call</div><p>Sell to the <b>CFO, not the tree lover</b>: position impact as audit-ready infrastructure for CSRD reporting.</p></div>
+        <div class="call ops"><div class="t">Ops system</div><p>A full <b>investor consistency audit</b>: one source of truth so every number matches across deck, PDFs, site and model.</p></div>
+      </div>
     </div>
     <div class="r"><div class="shot tilt"><div class="bar"><i></i><i></i><i></i><span>climate-cooperative.com</span></div><img src="img/cc.jpg" alt="Climate Cooperative homepage: Carbon is the next financial metric"></div></div>
   </div>
-  <div class="note">First door: companies. I deliberately wrote this for a CFO, not for someone who loves trees. The headline is "Carbon is the next financial metric. Manage it like one." Every tree is GPS-tagged, verified by a third party, and listed in a public registry with serial numbers. One thing I want to highlight because it's very much a strategy-and-operations job: when we went to investors, I ran a full consistency audit. The pitch deck, the PDFs, the website and the financial model all had slightly different numbers. I aligned every one of them. In fundraising, one inconsistent number can cost you the room.</div>
+  <div class="note">First door: companies. The strategy call was who we sell to. Not the person who loves trees, but the CFO and the sustainability lead, who now need audit-ready numbers for CSRD. So the headline is "Carbon is the next financial metric. Manage it like one." Every tree is GPS-tagged, third-party verified, and in a public registry. The operations piece I'm proud of: when we prepared for investors, the pitch deck, the PDFs, the website and the financial model all had slightly different numbers. I ran a full consistency audit and set up one source of truth, so every number matches everywhere. In fundraising, and with funders in general, one inconsistent number can cost you the room.</div>
 </section>
 
 <!-- 5 MY CLIMATE COOPERATIVE -->
-<section class="slide" data-time="1:00">
+<section class="slide" data-time="1:00" data-title="My Climate Cooperative · individuals">
   <div class="bg"></div>
-  <div class="split" style="grid-template-columns:1.2fr 1fr">
+  <div class="split" style="grid-template-columns:1.15fr 1fr">
     <div class="r" style="position:relative">
       <div class="shot"><div class="bar"><i></i><i></i><i></i><span>my.climate-cooperative.com</span></div><img src="img/mycc.jpg" alt="My Climate Cooperative homepage: plant a tree, see exactly where it grows"></div>
       <div class="shot float"><img src="img/mycc-dash.jpg" alt="Member dashboard with satellite view of a plot"></div>
     </div>
     <div>
-      <div class="kicker r">02 · For individuals</div>
-      <h2 class="r" style="font-size:52px">Plant a tree. <span class="gold">See exactly where it grows.</span></h2>
-      <ul class="bul r">
-        <li><b>€10 a month = five trees</b>, as a membership, not a one-off donation.</li>
-        <li>Your own plot on a <b>satellite map</b>: species, date, coordinates, growth.</li>
-        <li>A member number for life, gifts, groups, and <b>four languages</b>.</li>
-      </ul>
+      <div class="kicker r">02 · Individuals</div>
+      <h2 class="r" style="font-size:50px">Plant a tree. <span class="gold">See exactly where it grows.</span></h2>
+      <p class="sub r">€10 a month plants five trees, and on day one members see their own plot on a satellite map.</p>
+      <div class="calls r">
+        <div class="call"><div class="t">Strategy call</div><p><b>Membership, not donations</b>: recurring revenue lets planting partners plan crews and nurseries.</p></div>
+        <div class="call ops"><div class="t">Ops system</div><p>Payments, four languages and guardrails: <b>nothing paid or sent</b> to customers without human sign-off.</p></div>
+      </div>
     </div>
   </div>
-  <div class="note">Second door: individuals. The insight here is about operations, not just marketing. A one-off donation plants a tree once. A membership keeps the nurseries and planting crews running season after season, so partners on the ground can actually plan. For ten euros a month you plant five trees, and on day one you see your plot on a satellite map: the species, the planting date, the coordinates, and how it grows over time. You get a member number for life, you can gift trees or start a group. It runs in four languages with recurring payments, and I was strict about safety: no test payment or bulk email goes out without a human approving it.</div>
+  <div class="note">Second door: individuals. The strategy call here was the business model: a membership instead of one-off donations. A donation plants a tree once. A membership gives predictable monthly revenue, so our partners on the ground can plan their crews and nurseries season after season. Ten euros a month plants five trees, and on day one you see your plot on a satellite map, with species, date and coordinates. On the operations side: recurring payments, four languages, and clear guardrails. Nothing that costs a customer money or lands in their inbox goes out without a human signing off.</div>
 </section>
 
 <!-- 6 SPROUTLY -->
-<section class="slide" data-time="0:50">
+<section class="slide" data-time="0:50" data-title="Sproutly · players">
   <div class="bg"></div>
   <div class="split" style="grid-template-columns:1.5fr 1fr">
     <div>
-      <div class="kicker r">03 · For players</div>
-      <h2 class="r" style="font-size:58px">Grow a tree on your phone.<br><span class="hl">Plant a real one on Earth.</span></h2>
-      <p class="lead r" style="font-size:22px;margin-top:20px">Sproutly: an idle game where daily care funds real agroforestry, as an approved VeBetterDAO partner.</p>
-      <div class="stats r" style="grid-template-columns:repeat(2,1fr);max-width:720px;margin-top:34px">
-        <div class="stat"><div class="num" data-to="10000" data-suffix="+">0</div><div class="lab">players</div></div>
-        <div class="stat"><div class="num" data-to="1400">0</div><div class="lab">agroforestry systems planted</div></div>
-        <div class="stat"><div class="num" data-to="245560">0</div><div class="lab">kg CO₂ offset per year</div></div>
-        <div class="stat"><div class="num" data-to="4.9" data-dec="1">0</div><div class="lab">★ rating on the stores</div></div>
+      <div class="kicker r">03 · Players</div>
+      <h2 class="r" style="font-size:54px">Grow a tree on your phone.<br><span class="hl">Plant a real one on Earth.</span></h2>
+      <div class="stats r" style="grid-template-columns:repeat(4,1fr);margin-top:30px">
+        <div class="stat"><div class="num" data-to="10000" data-suffix="+" style="font-size:38px">0</div><div class="lab">players</div></div>
+        <div class="stat"><div class="num" data-to="1400" style="font-size:38px">0</div><div class="lab">agroforestry systems</div></div>
+        <div class="stat"><div class="num" data-to="245560" style="font-size:38px">0</div><div class="lab">kg CO₂ offset / year</div></div>
+        <div class="stat"><div class="num" data-to="4.9" data-dec="1" style="font-size:38px">0</div><div class="lab">★ store rating</div></div>
+      </div>
+      <div class="calls r">
+        <div class="call"><div class="t">Strategy call</div><p><b>Go where attention already is</b>, and fund it through a partnership with VeBetterDAO.</p></div>
+        <div class="call ops"><div class="t">Ops system</div><p>One rule for every channel: <b>never show a number we can't verify.</b> No made-up reviews or counts.</p></div>
       </div>
     </div>
-    <div class="r" style="justify-self:center"><div class="shot tilt" style="width:360px;border-radius:40px;background:#000"><img src="img/game-phone.jpg" alt="Sproutly game screen: nurture your plant"></div></div>
+    <div class="r" style="justify-self:center"><div class="shot tilt" style="width:330px;border-radius:40px;background:#000"><img src="img/game-phone.jpg" alt="Sproutly game screen: nurture your plant"></div></div>
   </div>
-  <div class="note">The third door is the one people smile at: Sproutly. It's a relaxing mobile game. You water and care for a tree on your phone for a few minutes a day, and that activity funds real agroforestry in Brazil. It reaches people who would never visit a sustainability website. Today it has more than ten thousand players, fourteen hundred agroforestry systems planted, and a four-point-nine rating on the stores. For me the lesson was: meet people where their attention already is.</div>
+  <div class="note">Third door: players. Sproutly is a relaxing mobile game. You care for a tree on your phone for a few minutes a day, and that activity funds real agroforestry in Brazil. The strategy call: go where people's attention already is, instead of hoping they visit a sustainability website. And fund it through a partnership, with VeBetterDAO. Today: more than ten thousand players, fourteen hundred agroforestry systems, a four-point-nine rating. The operating rule I set across every channel: never show a number we can't verify. If we don't have a confirmed review count, we don't show one. That discipline is what keeps the trust story honest.</div>
 </section>
 
 <!-- 7 JARVIS -->
-<section class="slide" data-time="1:00">
+<section class="slide" data-time="0:50" data-title="Jarvis · side project">
   <div class="bg"></div>
   <div>
-    <div class="kicker r">Behind the scenes</div>
-    <h2 class="r">Jarvis: an AI chief of staff for a <span class="hl">small team.</span></h2>
+    <div class="kicker r">Side project · how I run my own work</div>
+    <h2 class="r">Jarvis: my personal <span class="hl">AI chief of staff.</span></h2>
     <div class="arch r">
       <div class="col">
-        <div class="chip">📥 Gmail &amp; Zoho mail<small>read-only reader agent</small></div>
+        <div class="chip">📥 Email<small>read-only reader agent</small></div>
         <div class="chip">📅 Calendar<small>daily 09:00 briefing</small></div>
-        <div class="chip">🔎 Web research<small>sources, not guesses</small></div>
+        <div class="chip">🔎 Research<small>sources, not guesses</small></div>
       </div>
-      <div class="core"><div class="pulse"></div><h3>Jarvis</h3><div class="small">Claude for work with tools<br>a cheaper model for chat, no tools</div>
+      <div class="core"><div class="pulse"></div><h3>Jarvis</h3><div class="small">a strong model for work with tools<br>a cheaper model for chat, no tools</div>
         <div class="wave"><i style="animation-delay:0s"></i><i style="animation-delay:.1s"></i><i style="animation-delay:.2s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.4s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.2s"></i><i style="animation-delay:.1s"></i></div>
       </div>
       <div class="col">
         <div class="chip">🗣️ Voice<small>speaks back, local speech-to-text</small></div>
-        <div class="chip">🖥️ Dashboard<small>one place for tasks and status</small></div>
+        <div class="chip">🖥️ Dashboard<small>tasks and status in one place</small></div>
         <div class="chip">📱 Phone<small>private channel, next phase</small></div>
       </div>
     </div>
-    <div class="guard r"><span>🔒 Least privilege per agent</span><span>✋ Human approval for anything outward</span><span>🗝️ Secrets never in the code</span><span>💶 Spend limits</span></div>
+    <div class="guard r"><span>🔒 Least privilege per agent</span><span>✋ Human approval for anything outward</span><span>🗝️ Secrets never in the code</span><span>💶 Hard spend limits</span></div>
   </div>
-  <div class="note">Finally, behind the scenes. Running all this with a small team means a lot of email, a lot of follow-up, a lot of context switching. So I built Jarvis, my own AI assistant, on an open-source framework. It reads my mail, gives me a briefing every morning at nine, does research with sources, and I can talk to it by voice. What I'm most proud of here is not the AI, it's the operating discipline: every agent gets only the permissions it needs, anything that leaves the building needs my approval, no secrets in the code, and hard spend limits. That's how I think about operations in general: automate the routine, keep humans on the decisions.</div>
+  <div class="note">One more thing, and this one is personal, separate from Climate Cooperative. I built my own AI assistant, Jarvis, to run my own work. It reads my email, gives me a briefing every morning at nine, does research with sources, and I can talk to it. I'm not showing it because of the AI. I'm showing it because of how it's set up, which is how I think about operations: a strong model only where it's needed and a cheap one for the rest, every part only gets the access it needs, anything that goes out needs my approval, and there are hard spend limits. Automate the routine, keep a human on the decisions.</div>
 </section>
 
-<!-- 8 LESSONS / REMOVE -->
-<section class="slide" data-time="1:00">
+<!-- 8 REMOVE -->
+<section class="slide" data-time="1:00" data-title="What I'd bring to remove">
   <div class="bg"></div>
   <div>
-    <div class="kicker r">What I take to remove</div>
-    <h2 class="r">Three lessons, one way of working.</h2>
+    <div class="kicker r">Head of Strategy &amp; Operations · remove</div>
+    <h2 class="r">How I work, and what I'd bring.</h2>
     <div class="lessons r">
-      <div class="lesson"><div class="n">1</div><h3>Make proof the product</h3><p>Trust isn't a claim on a slide. It's a coordinate, a registry, a number that matches everywhere.</p></div>
-      <div class="lesson"><div class="n">2</div><h3>Many doors, one backbone</h3><p>Design per audience, but run it on one shared operation, so you scale without fragmenting.</p></div>
-      <div class="lesson"><div class="n">3</div><h3>Leverage, with guardrails</h3><p>Use AI and automation to give a small team big reach, and keep people on every decision that matters.</p></div>
+      <div class="lesson"><div class="n">1</div><h3>Make proof the product</h3><p>Trust is a coordinate, a registry, a number that matches everywhere. One source of truth for funders and partners.</p></div>
+      <div class="lesson"><div class="n">2</div><h3>Many doors, one backbone</h3><p>Design per audience, run one shared operation, so the organisation scales without fragmenting.</p></div>
+      <div class="lesson"><div class="n">3</div><h3>Leverage, with guardrails</h3><p>Use systems and AI to give a small team big reach, and keep people on every decision that matters.</p></div>
     </div>
-    <p class="bridge r">remove runs four regional programs with an <span class="hl">800+ member community</span> for carbon removal startups. That's exactly this challenge: many audiences, one mission, a small team, and <span class="gold">trust as the currency.</span></p>
+    <p class="bridge r">remove runs programs in <span class="hl">four regions</span> for an <span class="hl">800+ member</span> CDR community: startups, buyers, funders and experts. Many audiences, one mission, a small team, and <span class="gold">trust as the currency.</span></p>
   </div>
-  <div class="note">So, three lessons I'd bring to remove. One: make proof the product. Trust is not a claim, it's a coordinate and a number that matches everywhere. Carbon removal startups live or die on exactly that. Two: many doors, one backbone. remove serves startups, buyers, funders and experts across Europe, India, Africa and Latin America. Different audiences, one operation underneath. Three: leverage with guardrails. A small non-profit team can do a lot more with good systems and AI, as long as people stay on the decisions. That's the kind of Head of Strategy and Operations I'd like to be for you. Thank you, I'm happy to take questions or open any of the live sites.</div>
+  <div class="note">So what would I bring to remove? Three ways of working. One: make proof the product. For an accelerator, that means one source of truth for the numbers funders, buyers and partners see. Two: many doors, one backbone. remove serves startups, buyers, funders and experts across Europe, India, Africa and Latin America. Every region and audience needs its own approach, but one shared way of running programs, data and reporting underneath, so you grow without fragmenting. Three: leverage with guardrails. A small non-profit team can do a lot more with good systems, as long as people stay on the decisions. My first step would be to listen: to the team and to the startups, before changing anything. That's the Head of Strategy and Operations I'd like to be. Thank you, I'm happy to take questions.</div>
 </section>
 
 <!-- 9 THANKS -->
-<section class="slide">
+<section class="slide" data-title="Questions">
   <div class="photo" style="background-image:url(img/hero-forest.jpg);background-position:center"></div>
   <div class="shade" style="background:rgba(1,38,26,.88)"></div>
   <div style="text-align:center;align-self:center">
@@ -282,43 +305,71 @@ nav.dots button.on{background:var(--lime);height:24px;border-radius:5px}
     <h1 class="r">Questions?</h1>
     <p class="lead r" style="margin:28px auto 0">climate-cooperative.com · my.climate-cooperative.com · games.sproutlyrwa.com</p>
   </div>
-  <div class="note">Open for questions. If useful, click through to a live site: my.climate-cooperative.com is the best one to show live, scroll to the satellite map.</div>
+  <div class="note">Open for questions. If useful, show a live site: my.climate-cooperative.com is the best one, scroll to the satellite map.</div>
 </section>
 
 </div>
 <nav class="dots" aria-label="Slides"></nav>
 <div id="count"></div>
-<div id="hint">← → navigate · N notes · F fullscreen</div>
-<aside id="notes" aria-live="polite"><h4>Speaker notes · <span id="ntime"></span></h4><div id="ntext"></div></aside>
+
+<div id="presenter">
+  <div class="pv-top"><div><h1 id="pvTitle"></h1><div id="pvTime"></div></div><div id="pvClock">0:00</div></div>
+  <div id="pvNote"></div>
+  <div class="pv-bot"><button id="pvPrev">← Back</button><span id="pvNext"></span><button id="pvGo">Next →</button></div>
+</div>
 
 <script>
 const slides=[...document.querySelectorAll('.slide')], stage=document.getElementById('stage');
-const dots=document.querySelector('nav.dots'); let i=0;
-slides.forEach((_,k)=>{const b=document.createElement('button');b.setAttribute('aria-label','Slide '+(k+1));b.onclick=()=>go(k);dots.append(b)});
-function fit(){const s=Math.min(innerWidth/1600,innerHeight/900);stage.style.transform=`translate(-50%,-50%) scale(${s})`}
-function count(el){const to=+el.dataset.to,dec=+(el.dataset.dec||0),suf=el.dataset.suffix||'';const t0=performance.now();
-  (function f(t){const p=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-p,3);el.textContent=(to*e).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec})+(p==1?suf:'');if(p<1)requestAnimationFrame(f)})(t0)}
-function go(n){
-  i=Math.max(0,Math.min(slides.length-1,n));
-  slides.forEach((s,k)=>s.classList.toggle('on',k===i));
-  [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
-  document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
-  document.getElementById('count').textContent=(i+1)+' / '+slides.length;
-  document.getElementById('ntext').textContent=slides[i].querySelector('.note')?.textContent||'';
-  document.getElementById('ntime').textContent=slides[i].dataset.time?('≈ '+slides[i].dataset.time):'';
-  slides[i].querySelectorAll('[data-to]').forEach(count);
-  history.replaceState(null,'','#'+(i+1));
+const isPV=new URLSearchParams(location.search).has('presenter');
+const bc='BroadcastChannel' in window?new BroadcastChannel('remove-deck'):null;
+let i=0;
+
+if(isPV){
+  // Presenter window: notes, next slide and a timer. Arrow keys here drive the shared window.
+  document.body.classList.add('pv'); document.title='Presenter · Making Trust Visible';
+  const t0=Date.now();
+  setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);document.getElementById('pvClock').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0')},1000);
+  const show=n=>{i=n;const s=slides[i],nx=slides[i+1];
+    document.getElementById('pvTitle').textContent=(i+1)+' / '+slides.length+' · '+s.dataset.title;
+    document.getElementById('pvTime').textContent=s.dataset.time?'≈ '+s.dataset.time:'';
+    document.getElementById('pvNote').textContent=s.querySelector('.note')?.textContent||'';
+    document.getElementById('pvNext').textContent=nx?'Next: '+nx.dataset.title:'Last slide';};
+  const send=n=>{n=Math.max(0,Math.min(slides.length-1,n));show(n);bc&&bc.postMessage({go:n})};
+  bc&&(bc.onmessage=e=>{if('at' in e.data)show(e.data.at)});
+  document.getElementById('pvPrev').onclick=()=>send(i-1);
+  document.getElementById('pvGo').onclick=()=>send(i+1);
+  addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();send(i+1)}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();send(i-1)}});
+  show(0); bc&&bc.postMessage({ask:1});
+} else {
+  const dots=document.querySelector('nav.dots');
+  slides.forEach((_,k)=>{const b=document.createElement('button');b.setAttribute('aria-label','Slide '+(k+1));b.onclick=()=>go(k);dots.append(b)});
+  const fit=()=>{const s=Math.min(innerWidth/1600,innerHeight/900);stage.style.transform=`translate(-50%,-50%) scale(${s})`};
+  const count=el=>{const to=+el.dataset.to,dec=+(el.dataset.dec||0),suf=el.dataset.suffix||'';const t0=performance.now();
+    (function f(t){const p=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-p,3);el.textContent=(to*e).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec})+(p==1?suf:'');if(p<1)requestAnimationFrame(f)})(t0)};
+  window.go=n=>{
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+    [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
+    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+    document.getElementById('count').textContent=(i+1)+' / '+slides.length;
+    slides[i].querySelectorAll('[data-to]').forEach(count);
+    history.replaceState(null,'','#'+(i+1));
+    bc&&bc.postMessage({at:i});
+  };
+  bc&&(bc.onmessage=e=>{if('go' in e.data)go(e.data.go);else if(e.data.ask)bc.postMessage({at:i})});
+  addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();go(i+1)}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(i-1)}
+    else if(e.key==='Home')go(0); else if(e.key==='End')go(slides.length-1);
+    else if(e.key.toLowerCase()==='p')window.open(location.pathname+'?presenter','deckPresenter','width=1000,height=720');
+    else if(e.key.toLowerCase()==='f')document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+  });
+  stage.addEventListener('click',e=>go(e.clientX>innerWidth/2?i+1:i-1));
+  let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX);addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>40)go(d<0?i+1:i-1)});
+  addEventListener('resize',fit);fit();go((parseInt(location.hash.slice(1))||1)-1);
 }
-addEventListener('keydown',e=>{
-  if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();go(i+1)}
-  else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(i-1)}
-  else if(e.key==='Home')go(0); else if(e.key==='End')go(slides.length-1);
-  else if(e.key.toLowerCase()==='n')document.getElementById('notes').classList.toggle('open');
-  else if(e.key.toLowerCase()==='f')document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
-});
-stage.addEventListener('click',e=>{if(!e.target.closest('a'))go(e.clientX>innerWidth/2?i+1:i-1)});
-let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX);addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>40)go(d<0?i+1:i-1)});
-addEventListener('resize',fit);fit();go((parseInt(location.hash.slice(1))||1)-1);
 </script>
 </body>
 </html>
