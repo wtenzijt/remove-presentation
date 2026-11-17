@@ -20,4 +20,3 @@ A 6-minute walkthrough of the strategy and operations behind Climate Cooperative
 | 6 | Sproutly (players) | 0:50 |
 | 7 | Jarvis (side project) | 0:50 |
 | 8 | What I'd bring to remove | 1:00 |
-| 9 | Questions | |
